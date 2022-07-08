@@ -1,23 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import useSWR from 'swr';
+import { convert } from './utils/currency';
 
 function App() {
+  const [base, dest] = ["USD", "CAD"];
+  const { data: rate, error } = useSWR([base, dest], convert);
+
+  if (error) return "Error";
+  if(!rate) return "Loading";
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {base} to {dest} = {rate}
     </div>
   );
 }
