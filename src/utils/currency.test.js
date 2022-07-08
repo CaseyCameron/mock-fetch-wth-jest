@@ -25,3 +25,13 @@ it("catches errors and returns null", async () => {
   // this will fail so we expect it to be null
   expect(rates).toEqual(null);
 });
+
+it.skip("tests for more than one request", async () => {
+  // why doesn't this work?
+  fetch.mockResponses([JSON.stringify({ rates: { CAD: 1.42 }}), {status: 200 }], [JSON.stringify({ rates: { CAD: 1.43 }}), {status: 200 }]);
+
+  const rates = await convert('USD', 'CAD');
+
+  expect(rates).toEqual(1.42);
+  expect(fetch).toHaveBeenCalledTimes(2);
+});
