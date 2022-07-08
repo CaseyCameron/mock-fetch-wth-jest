@@ -1,5 +1,14 @@
 import { convert } from "./currency";
 
-it('converts USD to CAD', async () => {
+beforeEach(() => {
+  fetch.resetMocks();
+});
+
+it("converts correctly", async () => {
   
-})
+
+});
+
+it("catches errors and returns null", async () => {
+ 
+});
