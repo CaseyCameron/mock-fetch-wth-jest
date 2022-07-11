@@ -6,7 +6,7 @@ function App() {
   const { data: rate, error } = useSWR([base, dest], convert);
 
   if (error) return "Error";
-  if(!rate) return "Loading";
+  if (!rate) return "Loading";
 
   return (
     <div>
